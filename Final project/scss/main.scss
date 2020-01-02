@@ -1,0 +1,801 @@
+@import "bootstrap/bootstrap";
+$main-color: #062033;
+$second-color: #6a737b;
+$dots-color: #112a3c;
+$heart-issues: #dce1e5;
+$tag-border: #154458;
+$nav-hover: #32b0ee;
+$carousel-decor: #0feb9e;
+$features-bg: #f4f7f9;
+$facts-border: #6f7a83;
+$input-border: #cccccc;
+$footer-bg: #1ea78d;
+
+@mixin size($width, $height: $width) {
+	width: $width;
+	height: $height;
+	display: block;
+}
+@mixin padd($padd...) {
+	padding: $padd;
+}
+@mixin marg($marg...) {
+	margin: $marg;
+}
+@mixin list-style() {
+	list-style: none;
+	padding-inline-start: 0px;
+}
+// font-family: 'Open Sans', sans-serif;
+// font-family: 'Pacifico', cursive;
+body {
+	color: $main-color;
+}
+
+h2 {
+	text-align: center;
+	text-transform: uppercase;
+	color: $secondary;
+	font-weight: 800;
+	margin-bottom: 18px;
+	letter-spacing: -.5px;
+}
+h3 {
+	font-weight: 600;
+	margin-bottom: 16px;
+}
+h4 {
+	@include padd(0 100px 0 100px);
+	text-align: center;
+	font-weight: 600;
+	line-height: 24px;
+	margin-bottom: 45px;
+	@media (max-width: 767.98px) {
+		padding: 0px;
+	}
+}
+
+.dots {
+	width: 100%;
+	ul {
+		@include list-style;
+		margin-bottom: 54px;
+		li {
+			span {
+				@include size(8px);
+				border: 1px solid $dots-color;
+				border-radius: 50%;
+				opacity: .2;
+				cursor: pointer;
+				&.active{
+					background-color: $dots-color;
+					opacity: 1;
+				}
+			}
+		}
+		li:not(:first-child) {
+			margin-left: 15px;
+		}
+	}
+}
+
+.heart {
+	position: relative;
+	margin-bottom: 28px;
+	width: 100%;
+	.icon-ico-heart {
+		font-size: 18px;
+		opacity: .2;
+	}
+	&:before {
+		content: " ";
+		@include size(90px, 1px);
+		@include marg(8px 14px 0 0);
+		background-color: $heart-issues;
+	}
+	&:after {
+		content: " ";
+		@include size(90px, 1px);
+		@include marg(8px 0 0 14px);
+		background-color: $heart-issues;
+	}
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active {
+	background: $secondary;
+	border-color: $secondary;
+}
+
+/*----------------------- HEADER -------------------*/
+.main-header {
+	position: absolute;
+	top: 0;
+	z-index: 100;
+	width: 100%;
+	background-color: $dark;
+	min-height: 70px;
+	.navbar-toggler {
+		margin-top: 20px;
+	}
+	.navbar-brand {
+		padding: 0;
+		margin-top: 16px;
+	}
+	.logo-wrapper {
+		position: relative;
+		.tag {
+			@include marg(24px 0 0 27px);
+			color: $white;
+			font-weight: 300;
+			padding-left: 21px;
+			border-left: 1px solid $tag-border;
+			line-height: 17px;
+			letter-spacing: .7px;
+			position: absolute;
+			width: 200px;
+		}
+	}
+	.navbar-nav {
+		li {
+			margin-left: 30px;
+			border-top: 1px solid transparent;
+			a {
+				margin-top: 22px;	
+			}
+			&:hover,
+			&.active {
+				border-top: 1px solid $nav-hover;
+			}
+		}
+	}
+	@media (max-width: 991.98px) {
+		.navbar-nav {
+			li {
+				border: none;
+				padding-left: 15px;
+				@include marg(5px 0 0 0);
+				width: 300px;
+				a {
+					@include marg(10px 0 10px 0);
+					text-transform: uppercase;
+				}
+				&:hover,
+				&.active {
+					border: none;
+					border-radius: 7px;
+					background-color: $gray-700;
+				}
+			}
+		}
+	}
+}
+
+/*----------------------- CAROUSEL -------------------*/
+.carousel {
+	position: relative;
+	img{
+		height: 100vh;
+		@media (max-width: 1199.98px) {
+			height: auto;
+		}
+	}
+	.carousel-indicators {
+		margin: 0;
+		height: 100%;
+		left: inherit;
+		right: 48px;
+		flex-direction: column;
+		li {
+			border: 1px solid $white;
+			opacity: .2;
+			border-radius: 50%;
+			margin-bottom: 15px;
+		}
+		.active {
+			background: $white;
+			opacity: 1;
+		}
+		@media (max-width: 767.98px) {
+			visibility: hidden;
+		}
+	}
+	.slider-socials {
+		@include list-style;
+		position: absolute;
+		display: flex;
+		justify-content: center;
+		bottom: 36px;
+		z-index: 11;
+		left: calc(50% - 70px);
+		li {
+			margin-left: 14px;
+			a {
+				text-decoration: none;
+				color: $white;
+				span {
+					display: block;
+					font-size: 18px;
+					opacity: .3;
+					&.active {
+						opacity: 1;
+					}
+				}
+				&:hover {
+					span {
+						opacity: 1;
+					}
+				}
+			}
+		}
+		@media (max-width: 991.98px) {
+			bottom: 10px;
+		}
+	}
+	.carousel-caption {
+		font-weight: 300;
+		h1 {
+			font-weight: 300;
+			margin-bottom: -7px;
+			span {
+				font-weight: bold;
+			}
+		}
+		.big {
+			@include marg(0 0 10px 5px);
+			font-size: 48px;
+			font-weight: 300;
+			.green {
+				color: $carousel-decor;
+			}
+		}
+		.third-line {
+			@include marg(0 0 135px 5px);
+			margin-left: 5px;
+			font-size: 18px;
+			font-weight: 300;
+			margin-bottom: 135px;
+			position: relative;
+			&:before {
+				content: '';
+				@include size(28px, 1px);
+				background-color: $carousel-decor;
+				position: absolute;
+				left: 30%;
+				top: 14px;
+			}
+			&:after {
+				content: '';
+				@include size(28px, 1px);
+				background-color: $carousel-decor;
+				position: absolute;
+				right: 30%;
+				top: 14px;
+			}
+		}
+		@media (max-width: 991.98px) {
+			.third-line {
+				margin-bottom: 30px;
+			}
+		}
+	}
+}
+
+/*------------------------ FEATURES --------------------*/
+.features {
+	background-color: $features-bg;
+	padding-top: 70px;
+	.col-lg-4 {
+		@include padd(0 10px 0 30px);
+		margin-top: 30px;
+	}
+	.media {
+		@include marg(3px 0 58px 0);
+		.icon {
+			@include size(40px, 40px);
+			border: 1px solid $secondary;
+			border-radius: 50%;
+			color: $secondary;
+			margin-right: 16px;
+		}
+		.icon-ico-leaf {
+			font-size: 20px;
+		}
+		.icon-ico-pencil {
+			font-size: 16px;
+		}
+		.icon-ico-megaphone {
+			font-size: 19px;
+		}
+		p {
+			line-height: 21px;
+		}
+		@media (max-width: 991.98px) {
+			margin-bottom: 10px;
+		}
+	}
+}
+
+/*------------------------ WORKS ----------------------*/
+.works {
+	padding-top: 92px;
+	.kinds {
+		@include marg(2px 0 36px 14px);
+		@include list-style;
+		flex-wrap: wrap;
+		li {
+			margin-left: 8px;
+			a {
+				background: transparent;
+				border-color: transparent;
+				color: $main-color;
+				font-weight: 700;
+				&:hover {
+					background: $secondary;
+					color: $white;
+				}
+				&.active {
+					background: $secondary;
+					color: $white;
+				}
+			}
+		}
+		@media (max-width: 767.98px) {
+			margin-bottom: 10px;
+			li {
+				@include marg(0 0 15px 10px);
+			}
+		}
+	}
+	.container-fluid {
+		padding: 0;
+		.row {
+			margin: 0;
+		}
+		.col-lg-3 {
+			padding: 0;
+		}
+		img {
+			position: relative;
+			width: 100%;
+		}
+		a:hover .img-info {
+			visibility: visible;
+		}
+		a.active .img-info {
+			visibility: visible;
+		}
+		.img-info {
+			position: absolute;
+			background-color: rgba(14, 180, 147, .9);
+			top: 0;
+			height: 100%;
+			width: 100%;
+			visibility: hidden;
+			.icon {
+				@include size(40px, 40px);
+				border: 1px solid $white;
+				border-radius: 50%;
+				margin-bottom: 25px;
+				.icon-ico-eye {
+					color: $white;
+					font-size: 20px;
+				}
+			}
+			h4 {
+				padding: 0;
+				color: $white;
+				margin-bottom: 5px;
+			}
+			p {
+				color: $white;
+				font-size: 14px;
+				margin: 0;
+			}
+		}
+	}
+}
+
+/*------------------------- TEAM ----------------------*/
+.team {
+	@include padd(94px 0 66px 0);
+	.card {
+		@include marg(62px 0 68px 0);
+		text-align: center;
+		.card-content:hover,
+		.active {
+			.team-member-info {
+				visibility: visible;
+			}
+			h4 {
+				color: $secondary;
+			}
+		}
+		.card-hover {
+			position: relative;
+		}
+		h4 {
+			padding: 0;
+			margin-bottom: 8px;
+		}
+		.card-body {
+			padding: 1rem;
+		}
+		.team-member-info {
+			@include size(100%);
+			position: absolute;
+			top: 0;
+			text-align: center;
+			background-color: rgba(14, 180, 147, .95);
+			visibility: hidden;
+			.bold {
+				margin-top: 18px;
+				font-weight: 700;
+			}
+			p {
+				margin-bottom: 7px;
+				font-size: 16px;
+				color: $white;
+				width: 85%;
+			}
+			.socials {
+				@include list-style;
+				position: absolute;
+				bottom: 0;
+				margin-bottom: 23px;
+				li {
+					a {
+						@include size(42px);
+						background: rgba(0, 0, 0, .3);
+						color: $white;
+						text-decoration: none;
+						&:hover {
+							background: rgba(0, 0, 0, .6);
+						}
+						span {
+							font-size: 22px;
+							&.google {
+								@include size(23px, 23px);
+								background: url('../../img/sprite.png') no-repeat -37px -104px;
+							}
+						}
+					}
+				}
+				li:not(:first-child) {
+					margin-left: 4px;
+				}
+			}
+			@media (max-width: 1199.98px) {
+				p {
+					font-size: 14px;
+					width: 95%;
+				}
+				.bold {
+					margin-top: 5px;
+				}
+				.socials {
+					margin-bottom: 10px;
+				}
+			}
+
+			@media (max-width: 991.98px) {
+				p {
+					font-size: 18px;
+					width: 80%;
+				}
+				.bold {
+					margin-top: 25px;
+				}
+				.socials {
+					margin-bottom: 20px;
+				}
+			}
+			@media (max-width: 767.98px) {
+				p {
+					font-size: 15px;
+					width: 85%;
+				}
+				.bold {
+					margin-top: 5px;
+				}
+				.socials {
+					margin-bottom: 15px;
+				}
+			}
+			@media (max-width: 575.98px) {
+				p {
+					margin-top: 40px;
+					font-size: 25px;
+				}
+				.bold {
+					margin-top: 25px;
+				}
+				.socials {
+					margin-bottom: 25px;
+				}
+			}
+		}
+	}
+}
+
+/*----------------------- FUN-FACTS --------------------*/
+.fun-facts {
+	@include padd(93px 0 133px 0);
+	background: url(../../img/fun-facts-bg.jpg) no-repeat center;
+	.heart {
+		margin-bottom: 22px;
+		.icon-ico-heart {
+			color: $white;
+			opacity: 1;
+		}
+	}
+	.card-item {
+		@include size(130px);
+		border: 2px solid $facts-border;
+		border-radius: 50%;
+		margin-bottom: 7px;
+		.clock {
+			@include size(40px);
+			background: url('../../img/sprite.png') no-repeat 0 0;
+		}
+		.friends {
+			@include size(38px);
+			background: url('../../img/sprite.png') no-repeat -45px 0;
+		}
+		.rocket{
+			@include size(33px);
+			background: url('../../img/sprite.png') no-repeat -88px 0;;
+		}
+		.cup {
+			@include size(40px, 38px);
+			background: url('../../img/sprite.png') no-repeat -126px 0;
+		}
+	}
+	.card-body {
+		text-align: center;
+	}
+	.numbers {
+		color: $white;
+		font-size: 60px;
+		font-weight: 600;
+	}
+	h4 {
+		@include marg(-8px 0 0 0);
+		padding: 0;
+		color: $white;
+		text-transform: uppercase;
+		font-weight: normal;
+	}
+	@media (max-width: 767.98px) {
+		@include padd(40px 0 40px 0);
+		.card-item {
+			@include size(90px);
+		}
+		.numbers {
+			font-size: 35px;
+		}
+		.card-body {
+			padding: 0;
+			margin-bottom: 40px;
+		}
+	}
+}
+
+/*---------------------- CONTACT ------------------------*/
+.contact {
+	@include padd(93px 0 90px 0);
+	.section-header {
+		padding-bottom: 26px;
+	}
+	.col1-head {
+		font-size: 22px;
+		margin-top: 3px;
+		line-height: 32px;
+	}
+	.col1-cont {
+		color: $second-color;
+		margin-top: 15px;
+		line-height: 24px;
+		@media (max-width: 767.98px) {
+			margin-bottom: 50px;
+		}
+	}
+	.col2-head {
+		font-size: 24px;
+		font-weight: 700;
+		margin-bottom: 23px;
+	}
+	input,
+	textarea {
+		border: none;
+		border-bottom: 1px solid $input-border;
+	}
+	input {
+		@include padd(0 10px 0 0);
+		height: 55px;
+		margin-bottom: 27px;
+	}
+	textarea {
+		@include padd(0 10px 0 0);
+		height: 36px;
+		margin-bottom: 27px;
+		resize: none;
+	}
+	.letter {
+		@include size(23px, 16px);
+		background: url('../../img/sprite.png') no-repeat -277px 0;
+		margin-right: 12px;
+	}
+	.btn-light {
+		font-size: 16px;
+		color: $black;
+	}
+	.contact-socials {
+		@include list-style;
+		margin-top: 23px;
+		display: flex;
+		flex-direction: column;
+		li:not(:first-child) {
+			margin-top: 21px;
+		}
+		.behance {
+			@include size(26px, 17px);
+			background: url('../../img/sprite.png') no-repeat 0 -64px;
+			opacity: .2;
+			&:hover {
+				opacity: 1;
+			}
+		}
+		.twitter {
+			@include size(26px, 22px);
+			background: url('../../img/sprite.png') no-repeat -38px -61px;
+			opacity: .2;
+			&:hover {
+				opacity: 1;
+			}
+		}
+		.dribbble {
+			@include size(26px);
+			background: url('../../img/sprite.png') no-repeat -76px -59px;
+			opacity: .2;
+			&:hover {
+				opacity: 1;
+			}
+		}
+		.forrst {
+			@include size(23px, 26px);
+			background: url('../../img/sprite.png') no-repeat -114px -59px;
+			opacity: .2;
+			&:hover {
+				opacity: 1;
+			}
+		}
+		.google {
+			@include size(26px, 23px);
+			background: url('../../img/sprite.png') no-repeat -149px -61px;
+			opacity: .2;
+			&:hover{
+				opacity: 1;
+			}
+		}
+		@media (max-width: 991.98px) {
+			flex-direction: row;
+			justify-content: center;
+			li:not(:first-child) {
+				margin-left: 21px;
+			}
+			li {
+				margin-top: 21px;
+			}
+		}
+	}
+}
+
+/*--------------------------- MAP --------------------*/
+.map {
+	.container-fluid {
+		padding: 0;
+		position: relative;
+		img {
+			width: 100%;
+			opacity: .4;
+		}
+		.map-mark {
+			@include size(26px, 35px);
+			background: url('../../img/sprite.png') no-repeat 0 -92px;
+			position: absolute;
+			top: calc(50% - 17px);
+			left: 25%;
+		}
+	}
+}
+
+/*------------------------- FOOTER ---------------------*/
+.footer {
+	@include padd(99px 0 100px 0);
+	background-color: $footer-bg;
+	border-top: 5px solid $main-color;
+	color: $white;
+	line-height: 24px;
+	.logo {
+		margin-bottom: 38px;
+	}
+	.footer-heading {
+		@include marg(9px 0 41px 0);
+		font-size: 14px;
+		font-weight: 700;
+		opacity: .8;
+		display: block;
+	}
+	.form-group {
+		.form-control {
+			border: 2px solid $white;
+			border-radius: 3px;
+			height: 46px;
+			background: transparent;
+			position: relative;
+			color: $white;
+		}
+		button {
+			position: absolute;
+			right: 8%;
+			top: 82px;
+		}
+		.arrow {
+			@include size(18px, 13px);
+			background: url('../../img/sprite.png') no-repeat -282px -61px;
+		}
+	}
+	.explore {
+		@include list-style;
+		margin-top: -8px;
+		li {
+			margin-bottom: 8px;
+			a {
+				text-decoration: none;
+				color: $white;
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+	.created {
+		padding-top: 65px; 
+		position: relative;
+		.icon-ico-heart {
+			font-size: 14px;
+			color: $black;
+			opacity: .3;
+			position: absolute;
+			left: 118px;
+			top: 67px;
+		}
+		p {
+			padding-left: 11px;
+			border-left: 1px solid rgba(6, 32, 51, .3);
+			margin-bottom: 47px;
+		}
+		a {
+			text-decoration: none;
+			color: $main-color;
+			&:hover {
+				text-decoration: underline;
+			}
+			
+		}
+		.copyright {
+			margin-left: 11px;
+		}
+		@media (max-width: 1199.98px) {
+			padding-right: 0;
+			.copyright {
+				margin-left: 0;
+			}
+		}
+	}
+	@media (max-width: 991.98px) {
+		.col-md-6 {
+			margin-bottom: 30px;
+		}
+	}
+}
